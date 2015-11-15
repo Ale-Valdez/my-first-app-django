@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import Pelicula
 
 def peliculas_lista(request):
-    return render(request, 'movies/peliculas_lista.html', {})
-# Create your views here.
+    peliculas = Pelicula.objects.all().order_by('titulo')
+    return render(request, 'movies/peliculas_lista.html', {'peliculas':peliculas})
+
